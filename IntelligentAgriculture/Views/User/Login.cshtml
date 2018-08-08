@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>管理系统</title>
+    <link href="~/CSS/Loginstyle.css" rel="stylesheet" />
+    <link href="~/CSS/Loginbody.css" rel="stylesheet" />
+    <link href="~/Content/JqueryEasyUI/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/JqueryEasyUI/themes/icon.css" rel="stylesheet" />
+    @*添加Jquery，EasyUI和easyUI的语言包的JS文件*@
+    <script src="~/Content/JqueryEasyUI/jquery-1.8.0.min.js"></script>
+    <script src="~/Content/JqueryEasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Content/JqueryEasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Content/DatePicker/WdatePicker.js"></script>
+    @*日期格式的引用*@
+
+    <style type="text/css">
+        <!--
+        .STYLE1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+        }
+        -->
+    </style>
+
+    <script type="text/javascript">
+        //调用js登陆方法验证用户名，和密码 如果通过，条页面！
+         function login() {
+             //获取用户名和密码
+             var userid = $("#username").val();
+             var password = $("#password").val();
+             //验证用户名不为空
+             if (userid == "" || null ) {
+                 $.messager.alert("提示", "请输入用户名", "info");
+                 return;
+             }
+                 //验证密码不为空
+             else if (password == "" || null) {
+                 $.messager.alert("提示", "请输密码", "info");
+                 return;
+             } else {
+                 //验证通过，调用LoginController中的confirmation（）方法，去B层验证密码是否正确
+                 $.ajax({
+                         url: "/Login/Confirmation",
+                         data: { userid: userid, password: password },   //传入的数据
+                         type: "POST",                                      //返回的类型
+                         dataType: 'text',
+                         success: function (data) {                         //接收返回的数据 判断 成功则跳页面，失败则返回
+                             if (data == "OK") {
+                                 window.location.href = "../Main/Main";//你可以更换里面的网址，以便成功后跳转
+                             } else if (data == "error") {
+                                 $.messager.alert("提示", "用户名或密码不正确，请您重新输入！", "info");
+                             }else{
+                                 alert("输入异常，请重新输入！");}
+                         },
+                         error: function () { alert("输入异常，请重新输入！") }, //错误提示
+
+                     });
+
+                 }
+         }
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1 class="STYLE1" >智慧农业云平台</h1>
+    </div>
+
+    <div class="container">
+        <section id="content">
+            <form action="">
+                <h1>登录</h1>
+                <div>
+
+                    <input type="text" placeholder="用户名" required="" id="username" />
+                </div>
+                <div>
+                    <input type="password" placeholder="密码" required="" id="password" />
+                </div>
+                <div>
+                    <span class="help-block u-errormessage" id="js-server-helpinfo"> </span>
+                </div>
+                <input name="submit" type="button" class="btn btn-primary" id="js-btn-login" value="登录" style="margin-left:120px" onclick="login()" />
+
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>

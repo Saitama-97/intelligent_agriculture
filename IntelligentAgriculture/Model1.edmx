@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="intelligent_agricultureModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="controllable_equipment">
+          <Key>
+            <PropertyRef Name="MAC" />
+          </Key>
+          <Property Name="MAC" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="equipment_information">
+          <Key>
+            <PropertyRef Name="MAC" />
+          </Key>
+          <Property Name="MAC" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Node_name" Type="varchar" MaxLength="20" />
+          <Property Name="X" Type="double" />
+          <Property Name="Y" Type="double" />
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="Temperature" Type="bool" />
+          <Property Name="Humidity" Type="bool" />
+          <Property Name="Pressure" Type="bool" />
+          <Property Name="Precipitation" Type="bool" />
+          <Property Name="Wind_speed" Type="bool" />
+          <Property Name="Wind_direction" Type="bool" />
+          <Property Name="Soil_temperature" Type="bool" />
+          <Property Name="Soil_water_content" Type="bool" />
+          <Property Name="Light" Type="bool" />
+          <Property Name="Dissolved_oxygen" Type="bool" />
+          <Property Name="Oxygen_density" Type="bool" />
+          <Property Name="CO2_density" Type="bool" />
+          <Property Name="Water_level" Type="bool" />
+        </EntityType>
+        <EntityType Name="sensor_results_record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="MAC" Type="char" MaxLength="20" />
+          <Property Name="Time" Type="datetime" Precision="0" />
+          <Property Name="Temperature" Type="double" />
+          <Property Name="Humidity" Type="double" />
+          <Property Name="Pressure" Type="double" />
+          <Property Name="Precipitation" Type="double" />
+          <Property Name="Wind_speed" Type="double" />
+          <Property Name="Wind_direction" Type="double" />
+          <Property Name="Soil_temperature" Type="double" />
+          <Property Name="Soil_water_content" Type="double" />
+          <Property Name="Light" Type="double" />
+          <Property Name="Dissolved_oxygen" Type="double" />
+          <Property Name="Oxygen_density" Type="double" />
+          <Property Name="CO2_density" Type="double" />
+          <Property Name="Water_level" Type="double" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="E-mail" Type="varchar" MaxLength="20" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="weather_forecast">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" Precision="0" />
+          <Property Name="Temp_avg" Type="double" />
+          <Property Name="Temp_max" Type="double" />
+          <Property Name="Temp_min" Type="double" />
+          <Property Name="Wind_max" Type="double" />
+          <Property Name="Precipitation" Type="double" />
+          <Property Name="Humidity_avg" Type="double" />
+          <Property Name="Description" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="intelligent_agricultureModelStoreContainer">
+          <EntitySet Name="controllable_equipment" EntityType="Self.controllable_equipment" Schema="intelligent_agriculture" store:Type="Tables" />
+          <EntitySet Name="equipment_information" EntityType="Self.equipment_information" Schema="intelligent_agriculture" store:Type="Tables" />
+          <EntitySet Name="sensor_results_record" EntityType="Self.sensor_results_record" Schema="intelligent_agriculture" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="intelligent_agriculture" store:Type="Tables" />
+          <EntitySet Name="weather_forecast" EntityType="Self.weather_forecast" Schema="intelligent_agriculture" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="intelligent_agricultureModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="controllable_equipment">
+          <Key>
+            <PropertyRef Name="MAC" />
+          </Key>
+          <Property Name="MAC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="equipment_information">
+          <Key>
+            <PropertyRef Name="MAC" />
+          </Key>
+          <Property Name="MAC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="X" Type="Double" />
+          <Property Name="Y" Type="Double" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Temperature" Type="Boolean" />
+          <Property Name="Humidity" Type="Boolean" />
+          <Property Name="Pressure" Type="Boolean" />
+          <Property Name="Precipitation" Type="Boolean" />
+          <Property Name="Wind_speed" Type="Boolean" />
+          <Property Name="Wind_direction" Type="Boolean" />
+          <Property Name="Soil_temperature" Type="Boolean" />
+          <Property Name="Soil_water_content" Type="Boolean" />
+          <Property Name="Light" Type="Boolean" />
+          <Property Name="Dissolved_oxygen" Type="Boolean" />
+          <Property Name="Oxygen_density" Type="Boolean" />
+          <Property Name="CO2_density" Type="Boolean" />
+          <Property Name="Water_level" Type="Boolean" />
+          <Property Name="Node_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sensor_results_record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="MAC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="DateTime" />
+          <Property Name="Temperature" Type="Double" />
+          <Property Name="Humidity" Type="Double" />
+          <Property Name="Pressure" Type="Double" />
+          <Property Name="Precipitation" Type="Double" />
+          <Property Name="Wind_speed" Type="Double" />
+          <Property Name="Wind_direction" Type="Double" />
+          <Property Name="Soil_temperature" Type="Double" />
+          <Property Name="Soil_water_content" Type="Double" />
+          <Property Name="Light" Type="Double" />
+          <Property Name="Dissolved_oxygen" Type="Double" />
+          <Property Name="Oxygen_density" Type="Double" />
+          <Property Name="CO2_density" Type="Double" />
+          <Property Name="Water_level" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="weather_forecast">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" />
+          <Property Name="Temp_avg" Type="Double" />
+          <Property Name="Temp_max" Type="Double" />
+          <Property Name="Temp_min" Type="Double" />
+          <Property Name="Wind_max" Type="Double" />
+          <Property Name="Precipitation" Type="Double" />
+          <Property Name="Humidity_avg" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="intelligent_agricultureEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="controllable_equipment" EntityType="Self.controllable_equipment" />
+          <EntitySet Name="equipment_information" EntityType="Self.equipment_information" />
+          <EntitySet Name="sensor_results_record" EntityType="Self.sensor_results_record" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="weather_forecast" EntityType="Self.weather_forecast" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="intelligent_agricultureModelStoreContainer" CdmEntityContainer="intelligent_agricultureEntities">
+          <EntitySetMapping Name="controllable_equipment">
+            <EntityTypeMapping TypeName="intelligent_agricultureModel.controllable_equipment">
+              <MappingFragment StoreEntitySet="controllable_equipment">
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipment_information">
+            <EntityTypeMapping TypeName="intelligent_agricultureModel.equipment_information">
+              <MappingFragment StoreEntitySet="equipment_information">
+                <ScalarProperty Name="Node_name" ColumnName="Node_name" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Humidity" ColumnName="Humidity" />
+                <ScalarProperty Name="Pressure" ColumnName="Pressure" />
+                <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+                <ScalarProperty Name="Wind_speed" ColumnName="Wind_speed" />
+                <ScalarProperty Name="Wind_direction" ColumnName="Wind_direction" />
+                <ScalarProperty Name="Soil_temperature" ColumnName="Soil_temperature" />
+                <ScalarProperty Name="Soil_water_content" ColumnName="Soil_water_content" />
+                <ScalarProperty Name="Light" ColumnName="Light" />
+                <ScalarProperty Name="Dissolved_oxygen" ColumnName="Dissolved_oxygen" />
+                <ScalarProperty Name="Oxygen_density" ColumnName="Oxygen_density" />
+                <ScalarProperty Name="CO2_density" ColumnName="CO2_density" />
+                <ScalarProperty Name="Water_level" ColumnName="Water_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sensor_results_record">
+            <EntityTypeMapping TypeName="intelligent_agricultureModel.sensor_results_record">
+              <MappingFragment StoreEntitySet="sensor_results_record">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Humidity" ColumnName="Humidity" />
+                <ScalarProperty Name="Pressure" ColumnName="Pressure" />
+                <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+                <ScalarProperty Name="Wind_speed" ColumnName="Wind_speed" />
+                <ScalarProperty Name="Wind_direction" ColumnName="Wind_direction" />
+                <ScalarProperty Name="Soil_temperature" ColumnName="Soil_temperature" />
+                <ScalarProperty Name="Soil_water_content" ColumnName="Soil_water_content" />
+                <ScalarProperty Name="Light" ColumnName="Light" />
+                <ScalarProperty Name="Dissolved_oxygen" ColumnName="Dissolved_oxygen" />
+                <ScalarProperty Name="Oxygen_density" ColumnName="Oxygen_density" />
+                <ScalarProperty Name="CO2_density" ColumnName="CO2_density" />
+                <ScalarProperty Name="Water_level" ColumnName="Water_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="intelligent_agricultureModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="User_name" ColumnName="User_name" />
+                <ScalarProperty Name="User_password" ColumnName="User_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weather_forecast">
+            <EntityTypeMapping TypeName="intelligent_agricultureModel.weather_forecast">
+              <MappingFragment StoreEntitySet="weather_forecast">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Temp_avg" ColumnName="Temp_avg" />
+                <ScalarProperty Name="Temp_max" ColumnName="Temp_max" />
+                <ScalarProperty Name="Temp_min" ColumnName="Temp_min" />
+                <ScalarProperty Name="Wind_max" ColumnName="Wind_max" />
+                <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+                <ScalarProperty Name="Humidity_avg" ColumnName="Humidity_avg" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
