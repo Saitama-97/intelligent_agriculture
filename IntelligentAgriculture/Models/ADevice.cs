@@ -34,14 +34,22 @@ namespace IntelligentAgriculture.Models
 
         }
 
-        //个人信息查询（按页数）  多个东西   页码pageNum        一页几个pageSize
-        public List<equipment_information> select_All(int pageNum, int pageSize)
+        //个人信息查询（按页数）  多个东西 页码pagenum        一页几个pagesize
+        //public list<equipment_information> select_all(int pagenum, int pagesize)
+        //{
+        //    var con = from a in agriculture.equipment_information
+
+        //              select a;
+        //    return con.skip(pagesize * (pagenum - 1)).take(pagesize).tolist();
+        //    这里的number是当前页数，count是每页的数据条数。skip，除去前多少条数据剩下的数据。take,取几条数据，这句话就是查询除去前多少条之后的剩下的数据的前多少条数据
+        //}
+
+        //查询全部信息
+        public List<equipment_information> select_all()
         {
             var con = from a in agriculture.equipment_information
-                  
                       select a;
-            return con.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
-            //这里的number是当前页数，count是每页的数据条数。skip，除去前多少条数据剩下的数据。take,取几条数据，这句话就是查询除去前多少条之后的剩下的数据的前多少条数据
+            return con.ToList();
         }
 
         //根据设备编号查找

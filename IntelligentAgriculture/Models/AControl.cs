@@ -41,6 +41,7 @@ namespace IntelligentAgriculture.Models
             if(con != null)
             {
                 con.FirstOrDefault().State = exist_controllable.State;
+                agriculture.SaveChanges();
             }
             else
             {
@@ -65,5 +66,14 @@ namespace IntelligentAgriculture.Models
             }
         }
 
+        // 查询某控制点的状态
+
+        // 查询全部
+        public List<controllable_equipment> select_all()
+        {
+            var rs = from a in agriculture.controllable_equipment
+                     select a;
+            return rs.ToList();
+        }
     }
 }

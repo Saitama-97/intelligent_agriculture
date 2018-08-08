@@ -21,7 +21,7 @@ namespace IntelligentAgriculture.Models
         public void delete(string user_name)
         {
             var rs = this.select(user_name);
-            if(rs != null)
+            if (rs != null)
             {
                 agriculture.user.Remove(rs);
                 agriculture.SaveChanges();
@@ -31,16 +31,16 @@ namespace IntelligentAgriculture.Models
         // 修改用户
         public void update(user exist_user)
         {
-            var usr = from a in agriculture.user
+            var rs = from a in agriculture.user
                       where a.User_name == exist_user.User_name
                       select a;
-            if(usr != null)
+            if(rs != null)
             {
-                usr.FirstOrDefault().User_name = exist_user.User_name;
-                usr.FirstOrDefault().User_password = exist_user.User_password;
-                usr.FirstOrDefault().E_mail = exist_user.E_mail;
-                usr.FirstOrDefault().Phone = exist_user.Phone;
-                usr.FirstOrDefault().Status = exist_user.Status;
+                rs.FirstOrDefault().User_name = exist_user.User_name;
+                rs.FirstOrDefault().User_password = exist_user.User_password;
+                rs.FirstOrDefault().E_mail = exist_user.E_mail;
+                rs.FirstOrDefault().Phone = exist_user.Phone;
+                rs.FirstOrDefault().Status = exist_user.Status;
                 agriculture.SaveChanges();
             }
             else
@@ -51,13 +51,13 @@ namespace IntelligentAgriculture.Models
         // 查询单个用户
         public user select(string user_name)
         {
-            var usr = from a in agriculture.user
+            var rs = from a in agriculture.user
                       where a.User_name == user_name
                       select a;
 
-            if (usr != null)
+            if (rs != null)
             {
-                return usr.FirstOrDefault();
+                return rs.FirstOrDefault();
             }
             else
             {
@@ -65,5 +65,12 @@ namespace IntelligentAgriculture.Models
             }
         }
 
+        // 查询全部
+        public List<user> select_all()
+        {
+            var rs = from a in agriculture.user
+                      select a;
+            return rs.ToList();
+        }
     }
 }
