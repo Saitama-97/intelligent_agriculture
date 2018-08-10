@@ -10,6 +10,7 @@ namespace IntelligentAgriculture.Controllers
 {
     public class UserController : Controller
     {
+        private string name;
         // 显示全部用户
         public ActionResult ShowAll()
         {
@@ -85,6 +86,7 @@ namespace IntelligentAgriculture.Controllers
         // 删除用户
         public ActionResult Delete(string name)
         {
+            name = Request["name"].Trim();
             AUser user = new AUser();
             var rs = user.select(name);
             if (rs != null)

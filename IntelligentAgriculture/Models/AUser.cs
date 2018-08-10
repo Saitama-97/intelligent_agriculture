@@ -7,7 +7,7 @@ namespace IntelligentAgriculture.Models
 {
     public class AUser
     {
-
+      
         intelligent_agricultureEntities agriculture = new intelligent_agricultureEntities();
 
         // 添加新的用户
@@ -51,6 +51,7 @@ namespace IntelligentAgriculture.Models
         // 查询单个用户
         public user select(string user_name)
         {
+          
             var rs = from a in agriculture.user
                       where a.User_name == user_name
                       select a;
