@@ -65,9 +65,7 @@ namespace IntelligentAgriculture.Models
                 return null;
             }
         }
-
-        // 查询某控制点的状态
-
+        
         // 查询全部
         public List<controllable_equipment> select_all()
         {

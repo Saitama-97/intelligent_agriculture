@@ -53,56 +53,43 @@ namespace IntelligentAgriculture.Controllers
             }
         }
 
+        // 用户注册
+        public ActionResult Register(user usr)
+        {
+            AUser user = new AUser();
+            var rs = user.select(usr.User_name);
+            if(rs == null)
+            {
+                user.insert(usr);
+                if(user.select(usr.User_name) != null)
+                {
+                    return Content(JsonConvert.SerializeObject(new
+                    {
+                        code = 1,
+                        des = "注册成功",
+                    }));
+                }
+                else
+                {
+                    return Content(JsonConvert.SerializeObject(new
+                    {
+                        code = 0,
+                        des = "注册失败,未能写入数据库",
+                    }));
+                }           
+            }
+            else
+            {
+                return Content(JsonConvert.SerializeObject(new
+                {
+                    code = -1,
+                    des = "注册失败,已有该用户",
+                }));
+            }
+        }
+
     }
 }
 
-        //private string timeStamp;
-        //private string authenticator;
-
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        //public ActionResult About()
-        //{
-        //    ViewBag.Message = "Your application description page.";
-
-        //    return View();
-        //}
-
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
-
-        //public ActionResult BGQuery()
-        //{
-        //    try
-        //    {
-
-        //        timeStamp = Request["timeStamp"].Trim();
-        //        authenticator = Request["authenticator"].Trim();
-             
-        //            return Content(JsonConvert.SerializeObject(new
-        //            {
-        //                code = 0,
-        //                des = "OK",
-
-        //            }));
-
-                
-        //    }
-        //    catch (Exception error)
-        //    {
-        //        // 登录失败会抛出登录异常
-        //        return Content(JsonConvert.SerializeObject(new
-        //        {
-        //            code = -1,
-        //            err = error.Message
-        //        }));
-        //    }
-
+       
  

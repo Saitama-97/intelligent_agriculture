@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<IntelligentAgriculture.ViewModel.index>
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<table class="table">
+
+    <tr>
+
+        <th>
+
+            @Html.DisplayNameFor(model => model)
+
+        </th>
+
+        <th>
+
+            @Html.DisplayNameFor(model => model.userRole)
+
+        </th>
+
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+
+    {
+
+        <tr>
+
+            <td>
+
+                @Html.DisplayFor(modelItem => item.userName)
+
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(modelItem => item.userRole)
+
+            </td>
+
+        </tr>
+
+    }
+
+</table>
