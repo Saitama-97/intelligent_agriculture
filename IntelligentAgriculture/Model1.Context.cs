@@ -30,5 +30,6 @@ namespace IntelligentAgriculture
         public virtual DbSet<sensor_results_record> sensor_results_record { get; set; }
         public virtual DbSet<user> user { get; set; }
         public virtual DbSet<weather_forecast> weather_forecast { get; set; }
+        public virtual DbSet<socket> socket { get; set; }
     }
 }

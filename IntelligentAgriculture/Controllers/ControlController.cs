@@ -10,6 +10,8 @@ namespace IntelligentAgriculture.Controllers
 {
     public class ControlController : Controller
     {
+        private string mac;
+
         // 显示全部控制点
         public ActionResult ShowAll()
         {
@@ -76,5 +78,31 @@ namespace IntelligentAgriculture.Controllers
                 }));
             }
         }
+
+        // 按mac查询
+        public ActionResult ShowByMac(string mac)
+        {
+            mac = Request["mac"].Trim();
+            AControl control = new AControl();
+            var rs = control.select(mac);
+            if(rs != null)
+            {
+                return Content(JsonConvert.SerializeObject(new
+                {
+                    code = 1,
+                    des = "查询成功",
+                    data = rs,
+                }));
+            }
+            else
+            {
+                return Content(JsonConvert.SerializeObject(new
+                {
+                    code = 0,
+                    des = "查询失败",
+                }));
+            }
+        }
+
     }
 }

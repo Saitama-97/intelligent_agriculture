@@ -12,12 +12,9 @@ namespace IntelligentAgriculture
     using System;
     using System.Collections.Generic;
     
-    public partial class controllable_equipment
+    public partial class socket
     {
-        public string MAC { get; set; }
-        public string Type { get; set; }
-        public string State { get; set; }
-        public Nullable<double> X { get; set; }
-        public Nullable<double> Y { get; set; }
+        public int id { get; set; }
+        public string msg { get; set; }
     }
 }

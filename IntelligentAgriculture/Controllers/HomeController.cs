@@ -13,6 +13,7 @@ namespace IntelligentAgriculture.Controllers
         private string username;
         private string password;
 
+        // 用户登录
         public ActionResult Login(string username, string password)
         {
             username = Request["username"].Trim();

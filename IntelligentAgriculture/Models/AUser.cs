@@ -48,15 +48,32 @@ namespace IntelligentAgriculture.Models
             }
         }
 
-        // 查询单个用户
-        public user select(string user_name)
+        // 查询单个用户（按姓名）
+        public user select(string username)
         {
           
             var rs = from a in agriculture.user
-                      where a.User_name == user_name
+                      where a.User_name == username
                       select a;
 
             if (rs != null)
+            {
+                return rs.FirstOrDefault();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        // 查询单个用户（按id）
+        public user selectById(int id)
+        {
+            var rs = from a in agriculture.user
+                     where a.id == id
+                     select a;
+
+            if(rs != null)
             {
                 return rs.FirstOrDefault();
             }

@@ -10,6 +10,7 @@ namespace IntelligentAgriculture.Models
 
         intelligent_agricultureEntities agriculture = new intelligent_agricultureEntities();
 
+        // 增加节点
         public void insert(equipment_information user)
         {
 
@@ -17,11 +18,12 @@ namespace IntelligentAgriculture.Models
             agriculture.SaveChanges();
         }
 
-        public equipment_information select(string  MAC)
+        // 根据 MAC 查询单个节点信息
+        public equipment_information select(string MAC)
         {
             var dev = from a in agriculture.equipment_information
-                       where a.MAC == MAC
-                       select a;
+                      where a.MAC == MAC
+                      select a;
 
             if (dev != null)
             {
@@ -33,18 +35,8 @@ namespace IntelligentAgriculture.Models
             }
 
         }
-
-        //个人信息查询（按页数）  多个东西 页码pagenum        一页几个pagesize
-        //public list<equipment_information> select_all(int pagenum, int pagesize)
-        //{
-        //    var con = from a in agriculture.equipment_information
-
-        //              select a;
-        //    return con.skip(pagesize * (pagenum - 1)).take(pagesize).tolist();
-        //    这里的number是当前页数，count是每页的数据条数。skip，除去前多少条数据剩下的数据。take,取几条数据，这句话就是查询除去前多少条之后的剩下的数据的前多少条数据
-        //}
-
-        //查询全部信息
+        
+        // 查询全部节点信息
         public List<equipment_information> select_all()
         {
             var con = from a in agriculture.equipment_information
@@ -52,26 +44,7 @@ namespace IntelligentAgriculture.Models
             return con.ToList();
         }
 
-        //根据设备编号查找
-        public List<equipment_information> select_lic(string MAC)
-        {
-            List<equipment_information> user = (from a in agriculture.equipment_information
-                                                where a.MAC == MAC
-                                                select a).ToList();
-
-            if (user != null && user.Count != 0)
-            {
-                return user;
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
-       
-        //更改
+        // 修改节点信息
         public void update(equipment_information lig)
         {
             //先查询要获取的对象
@@ -84,7 +57,7 @@ namespace IntelligentAgriculture.Models
             agriculture.SaveChanges();
         }
 
-        //删除
+        // 根据 MAC 删除节点信息
         public void delete(string MAC)
         {
             var rs = this.select(MAC);
@@ -97,27 +70,13 @@ namespace IntelligentAgriculture.Models
             { }
         }
 
-
-
-
-
-
-        public equipment_information changeInfo(equipment_information dev)
+        // 根据 MAC 查询节点类型的 01 字符串
+        public equipment_information returnType(string mac)
         {
-            if (this.select(dev.MAC) != null)
-            {
-                this.update(dev);
-            }
-            else
-            {
-                this.insert(dev);
-            }
-            return select(dev.MAC);
+            var rs = from a in agriculture.equipment_information
+                     where a.MAC == mac
+                     select a;
+            return rs.FirstOrDefault();
         }
-
-        
-
-        
-    
-}
+    }
 }

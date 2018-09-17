@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="intelligent_agricultureModel.sensor_results_record" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="intelligent_agricultureModel.user" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="intelligent_agricultureModel.weather_forecast" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="intelligent_agricultureModel.socket" Width="1.5" PointX="5.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

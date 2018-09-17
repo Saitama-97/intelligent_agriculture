@@ -12,6 +12,8 @@
           <Property Name="MAC" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="X" Type="double" />
+          <Property Name="Y" Type="double" />
         </EntityType>
         <EntityType Name="equipment_information">
           <Key>
@@ -40,7 +42,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MAC" Type="char" MaxLength="20" />
           <Property Name="Time" Type="datetime" Precision="0" />
           <Property Name="Temperature" Type="double" />
@@ -56,6 +58,13 @@
           <Property Name="Oxygen_density" Type="double" />
           <Property Name="CO2_density" Type="double" />
           <Property Name="Water_level" Type="double" />
+        </EntityType>
+        <EntityType Name="socket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="msg" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -86,6 +95,7 @@
           <EntitySet Name="controllable_equipment" EntityType="Self.controllable_equipment" Schema="intelligent_agriculture" store:Type="Tables" />
           <EntitySet Name="equipment_information" EntityType="Self.equipment_information" Schema="intelligent_agriculture" store:Type="Tables" />
           <EntitySet Name="sensor_results_record" EntityType="Self.sensor_results_record" Schema="intelligent_agriculture" store:Type="Tables" />
+          <EntitySet Name="socket" EntityType="Self.socket" Schema="intelligent_agriculture" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="intelligent_agriculture" store:Type="Tables" />
           <EntitySet Name="weather_forecast" EntityType="Self.weather_forecast" Schema="intelligent_agriculture" store:Type="Tables" />
         </EntityContainer>
@@ -100,6 +110,8 @@
           <Property Name="MAC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="X" Type="Double" />
+          <Property Name="Y" Type="Double" />
         </EntityType>
         <EntityType Name="equipment_information">
           <Key>
@@ -176,7 +188,15 @@
           <EntitySet Name="sensor_results_record" EntityType="Self.sensor_results_record" />
           <EntitySet Name="user" EntityType="Self.user" />
           <EntitySet Name="weather_forecast" EntityType="Self.weather_forecast" />
+          <EntitySet Name="socket" EntityType="intelligent_agricultureModel.socket" />
         </EntityContainer>
+        <EntityType Name="socket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="msg" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -186,6 +206,8 @@
           <EntitySetMapping Name="controllable_equipment">
             <EntityTypeMapping TypeName="intelligent_agricultureModel.controllable_equipment">
               <MappingFragment StoreEntitySet="controllable_equipment">
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="MAC" ColumnName="MAC" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="State" ColumnName="State" />
@@ -262,6 +284,14 @@
                 <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
                 <ScalarProperty Name="Humidity_avg" ColumnName="Humidity_avg" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="socket">
+            <EntityTypeMapping TypeName="intelligent_agricultureModel.socket">
+              <MappingFragment StoreEntitySet="socket">
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

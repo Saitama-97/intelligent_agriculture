@@ -11,12 +11,39 @@ namespace IntelligentAgriculture.Controllers
     public class UserController : Controller
     {
         private string name;
+        private int id;
+
         // 显示全部用户
         public ActionResult ShowAll()
         {
             AUser user = new AUser();
             var rs = user.select_all();
             if (rs != null)
+            {
+                return Content(JsonConvert.SerializeObject(new
+                {
+                    code = 1,
+                    des = "显示成功",
+                    data = rs,
+                }));
+            }
+            else
+            {
+                return Content(JsonConvert.SerializeObject(new
+                {
+                    code = 0,
+                    des = "显示失败",
+                }));
+            }
+        }
+
+        // 显示单个用户
+        public ActionResult ShowById(int id)
+        {
+            int.TryParse(Request["id"],out id);
+            AUser user = new AUser();
+            var rs = user.selectById(id);
+            if(rs != null)
             {
                 return Content(JsonConvert.SerializeObject(new
                 {
